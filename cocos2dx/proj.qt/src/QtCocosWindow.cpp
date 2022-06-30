@@ -276,7 +276,9 @@ void QtCocosWindow::resizeGL(int w, int h)
 	emit VisibleFrameAdjusted();
 
 	makeCurrent();
+    CCDirector::sharedDirector()->stopAnimation();
 	CCDirector::sharedDirector()->mainLoop();
+    CCDirector::sharedDirector()->startAnimation();
 }
 
 void QtCocosWindow::paintGL()
