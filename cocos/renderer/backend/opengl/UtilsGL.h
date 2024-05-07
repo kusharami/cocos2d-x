@@ -82,10 +82,9 @@ public:
      * Convert wrap parameter for texture coordinate to GLint. i.e. convert SamplerAddressMode::REPEAT to GL_REPEAT.
      * If texture width and height are not power of 2, then GL_CLAMP_TO_EDGE is returned.
      * @param addressMode Specifies wrapping mode.
-     * @param isPow2 Specifies if texture width and height are power of two.
      * @return Wrap mode.
      */
-    static GLint toGLAddressMode(SamplerAddressMode addressMode, bool isPow2);
+    static GLint toGLAddressMode(SamplerAddressMode addressMode);
 
     /**
      * Get textrue parameters from texture pixle format.

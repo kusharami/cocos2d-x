@@ -66,12 +66,12 @@ void TextureInfoGL::applySamplerDescriptor(const SamplerDescriptor& descriptor, 
 
     if (descriptor.sAddressMode != SamplerAddressMode::DONT_CARE)
     {
-        sAddressModeGL = UtilsGL::toGLAddressMode(descriptor.sAddressMode, isPow2);
+        sAddressModeGL = UtilsGL::toGLAddressMode(descriptor.sAddressMode);
     }
 
     if (descriptor.tAddressMode != SamplerAddressMode::DONT_CARE)
     {
-        tAddressModeGL = UtilsGL::toGLAddressMode(descriptor.tAddressMode, isPow2);
+        tAddressModeGL = UtilsGL::toGLAddressMode(descriptor.tAddressMode);
     }
 }
 
@@ -109,8 +109,8 @@ void Texture2DGL::updateTextureDescriptor(const cocos2d::backend::TextureDescrip
     _textureInfo.magFilterGL = UtilsGL::toGLMagFilter(descriptor.samplerDescriptor.magFilter);
     _textureInfo.minFilterGL = UtilsGL::toGLMinFilter(descriptor.samplerDescriptor.minFilter, _hasMipmaps, isPow2);
 
-    _textureInfo.sAddressModeGL = UtilsGL::toGLAddressMode(descriptor.samplerDescriptor.sAddressMode, isPow2);
-    _textureInfo.tAddressModeGL = UtilsGL::toGLAddressMode(descriptor.samplerDescriptor.tAddressMode, isPow2);
+    _textureInfo.sAddressModeGL = UtilsGL::toGLAddressMode(descriptor.samplerDescriptor.sAddressMode);
+    _textureInfo.tAddressModeGL = UtilsGL::toGLAddressMode(descriptor.samplerDescriptor.tAddressMode);
 
     updateSamplerDescriptor(descriptor.samplerDescriptor);
 
