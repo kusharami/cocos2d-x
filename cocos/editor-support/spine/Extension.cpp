@@ -104,7 +104,7 @@ void DefaultSpineExtension::_free(void *mem, const char *file, int line) {
 	SP_UNUSED(file);
 	SP_UNUSED(line);
 
-	::free(mem);
+	//::free(mem);
 }
 
 char *DefaultSpineExtension::_readFile(const String &path, int *length) {

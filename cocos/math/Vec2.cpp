@@ -62,12 +62,6 @@ bool isOneDimensionSegmentOverlap(float A, float B, float C, float D, float *S, 
     }
 }
 
-// cross product of 2 vector. A->B X C->D
-float crossProduct2Vector(const Vec2& A, const Vec2& B, const Vec2& C, const Vec2& D)
-{
-    return (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
-}
-
 float Vec2::angle(const Vec2& v1, const Vec2& v2)
 {
     float dz = v1.x * v2.y - v1.y * v2.x;

@@ -39,6 +39,8 @@ namespace spine {
 	class ClippingAttachment;
 
 	class SP_API SkeletonClipping : public SpineObject {
+
+		friend void makeClockwise(Vector<float> &polygon);
 	public:
 		SkeletonClipping();
 

@@ -62,7 +62,7 @@ namespace spine {
 
 		virtual void configureAttachment(Attachment *attachment);
 
-		AtlasRegion *findRegion(const String &name);
+		virtual AtlasRegion *findRegion(const String &name);
 
 	private:
 		Atlas *_atlas;

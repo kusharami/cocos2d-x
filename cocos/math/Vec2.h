@@ -526,6 +526,14 @@ public:
         return x*other.y - y*other.x;
     }
 
+    // cross product of 2 vector. A->B X C->D
+    static float crossProduct2Vector(const Vec2& A, const Vec2& B, const Vec2& C, const Vec2& D)
+    // cross product of 2 vector. A->B X C->D
+    // float crossProduct2Vector(const Vec2& A, const Vec2& B, const Vec2& C, const Vec2& D)
+    {
+        return (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
+    }
+
     /** Calculates perpendicular of v, rotated 90 degrees counter-clockwise -- cross(v, perp(v)) >= 0
      @return Vec2
      @since v2.1.4
