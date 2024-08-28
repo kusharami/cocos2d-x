@@ -150,7 +150,9 @@ unsigned char* Data::takeBuffer(ssize_t* size)
     auto buffer = getBytes();
     if (size)
         *size = getSize();
-    fastSet(nullptr, 0);
+    _bytes = nullptr;
+    _size = 0;
+    _own = false;
     return buffer;
 }
 
