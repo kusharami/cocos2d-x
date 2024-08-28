@@ -643,7 +643,7 @@ float Terrain::getMaxHeight()
     return _maxHeight;
 }
 
-cocos2d::AABB Terrain::getAABB()
+cocos2d::AABB Terrain::getAABB() const
 {
     return _quadRoot->_worldSpaceAABB;
 }

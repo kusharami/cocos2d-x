@@ -4,7 +4,6 @@
 #include "QtCocosContext.h"
 
 #include "2d/CCNode.h"
-#include "2d/CCClippingNode.h"
 #include "2d/CCScene.h"
 #include "2d/CCCamera.h"
 #include "base/CCDirector.h"

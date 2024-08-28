@@ -418,7 +418,7 @@ public:
     /**
      * get the terrain's AABB(in world space)
      */
-    AABB getAABB();
+    virtual AABB getAABB() const override;
 
     /**
      * set the skirt height ratio
