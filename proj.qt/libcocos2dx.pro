@@ -882,5 +882,3 @@ isEmpty(FREETYPE_STATIC) {
 
 DISTFILES += \
     ../cocos/editor-support/spine/CMakeLists.txt
-
-INCLUDEPATH += ../../../AtlasManager/AtlasManager
