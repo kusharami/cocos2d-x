@@ -344,23 +344,20 @@ void QtCocosWindow::focusOutEvent(QFocusEvent *event)
 
 void QtCocosWindow::mousePressEvent(QMouseEvent *event)
 {
+	if (mMasterWidget && !mHasFocus)
+	{
+		mMasterWidget->clearFocus();
+		mMasterWidget->activateWindow();
+		mMasterWidget->setFocus(Qt::MouseFocusReason);
+	}
+
 	if (!mEnabled)
 	{
-		ignoredMouseEvent(event);
 		return;
 	}
+	mCanShowContextMenu = isContextMenuEvent(event);
 
 	auto pos = event->localPos();
-
-	if (mMasterWidget && isContextMenuEvent(event))
-	{
-		emit mMasterWidget->customContextMenuRequested(
-			QPoint(int(pos.x()), int(pos.y())));
-	}
-
-	if (ignoredMouseEvent(event))
-		return;
-
 	const qreal pixelRatio = devicePixelRatio();
 	Point scaledPos(pos.x() * pixelRatio, pos.y() * pixelRatio);
 
@@ -376,9 +373,6 @@ void QtCocosWindow::mousePressEvent(QMouseEvent *event)
 
 void QtCocosWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-	if (ignoredMouseEvent(event))
-		return;
-
 	if (!mEnabled)
 		return;
 
@@ -394,10 +388,18 @@ void QtCocosWindow::mouseReleaseEvent(QMouseEvent *event)
 	mEGLView->handleTouchesEnd(1, &ids, &scaledPos.x, &scaledPos.y);
 
 	emit MouseReleased(event);
+
+	if (mCanShowContextMenu && mMasterWidget)
+	{
+		mCanShowContextMenu = false;
+		emit mMasterWidget->customContextMenuRequested(
+			QPoint(int(pos.x()), int(pos.y())));
+	}
 }
 
 void QtCocosWindow::mouseDoubleClickEvent(QMouseEvent *event)
 {
+	mCanShowContextMenu = false;
 	if (!mEnabled)
 		return;
 
@@ -425,6 +427,7 @@ void QtCocosWindow::mouseDoubleClickEvent(QMouseEvent *event)
 
 void QtCocosWindow::mouseMoveEvent(QMouseEvent *event)
 {
+	mCanShowContextMenu = false;
 	if (!mEnabled)
 		return;
 
@@ -591,26 +594,6 @@ void QtCocosWindow::keyReleaseEvent(QKeyEvent *event)
 
 	makeCurrent();
 	emit KeyUp(event);
-}
-
-bool QtCocosWindow::ignoredMouseEvent(QMouseEvent *event)
-{
-#ifndef Q_OS_WASM
-	if (!mHasFocus)
-	{
-		if (mMasterWidget)
-		{
-			mMasterWidget->clearFocus();
-			mMasterWidget->activateWindow();
-			mMasterWidget->setFocus(Qt::MouseFocusReason);
-		}
-
-		event->ignore();
-
-		return true;
-	}
-#endif
-	return false;
 }
 
 void QtCocosWindow::updateAnimationState(bool force)

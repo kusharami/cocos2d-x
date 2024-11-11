@@ -96,7 +96,6 @@ private:
 	class InternalMainNode;
 	friend class InternalMainNode;
 
-	bool ignoredMouseEvent(QMouseEvent *event);
 	void updateAnimationState(bool force);
 
 	float getScaleForMainNode() const;
@@ -119,6 +118,7 @@ private:
 	quint32 mState;
 	QColor mBgColor;
 	QWidget *mMasterWidget;
+	bool mCanShowContextMenu = true;
 	bool mHasFocus;
 	bool mEnabled;
 	bool mRunning;
